@@ -100,6 +100,8 @@ void Error_Handler(void);
 #define I2C_SCL_GPIO_Port GPIOB
 #define I2C_SDA_Pin GPIO_PIN_7
 #define I2C_SDA_GPIO_Port GPIOB
+#define FACTORY_RESET_Pin GPIO_PIN_0
+#define FACTORY_RESET_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

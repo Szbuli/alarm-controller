@@ -9,13 +9,44 @@
 #include "can_support.h"
 #include "eeprom.h"
 #include "can-ids.h"
+#include "gpio.h"
 
 HomeConfig homeConfig;
+
+void blinkRapid() {
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_RESET);
+	osDelay(50);
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_SET);
+	osDelay(50);
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_RESET);
+	osDelay(50);
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_SET);
+	osDelay(50);
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_RESET);
+}
+
+void checkAndDoFactoryResetIfNeeded() {
+	GPIO_PinState factoryResetState = HAL_GPIO_ReadPin(FACTORY_RESET_GPIO_Port, FACTORY_RESET_Pin);
+	if (factoryResetState == GPIO_PIN_RESET) {
+		return;
+	}
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_SET);
+	osDelay(5000);
+	factoryResetState = HAL_GPIO_ReadPin(FACTORY_RESET_GPIO_Port, FACTORY_RESET_Pin);
+	if (factoryResetState == GPIO_PIN_RESET) {
+		return;
+	}
+	blinkRapid();
+	HAL_GPIO_WritePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin, GPIO_PIN_SET);
+	factoryReset();
+	blinkRapid();
+	HAL_NVIC_SystemReset();
+}
 
 void configureSensor(uint16_t typeId, uint8_t state) {
 	HAL_StatusTypeDef status;
 	if (typeId == ALARM_CONTROLLER_SENSOR_SET_1) {
-		 status = writeByteEEPROM(ADDRESS_ALARM_1, state);
+		status = writeByteEEPROM(ADDRESS_ALARM_1, state);
 	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_2) {
 		status = writeByteEEPROM(ADDRESS_ALARM_2, state);
 	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_3) {

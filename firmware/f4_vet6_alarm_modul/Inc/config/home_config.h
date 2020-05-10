@@ -59,6 +59,7 @@ typedef struct {
 
 extern HomeConfig homeConfig;
 
+void checkAndDoFactoryResetIfNeeded();
 void readConfigOnStartup();
 void factoryReset();
 void configureSensor(uint16_t canId, uint8_t state);
