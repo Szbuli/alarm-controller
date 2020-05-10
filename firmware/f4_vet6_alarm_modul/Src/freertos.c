@@ -186,7 +186,7 @@ void StartCanSendTask(void const * argument)
 	/* USER CODE BEGIN StartCanSendTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	if (initCan(CAN_SEND_QUEUEHandle, CAN_RECEIVE_QUEUEHandle) != HAL_OK) {
-		home_error(MODULE_CAN, CAN_INIT_FAILED);
+		home_error(CAN_INIT_FAILED);
 		return;
 	}
 

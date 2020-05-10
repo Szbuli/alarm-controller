@@ -26,8 +26,13 @@ HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_
 	canQueueHandle = canQueueHandleArgument;
 	CAN_RECEIVE_QUEUEHandle = CAN_RECEIVE_QUEUEHandleArgument;
 
-	if (canQueueHandle == NULL || CAN_RECEIVE_QUEUEHandle == NULL) {
-		home_error(MODULE_CAN, CAN_QUEUE_CANNOT_BE_CREATED);
+	if ( CAN_RECEIVE_QUEUEHandle == NULL) {
+		home_error(CAN_RX_QUEUE_CANNOT_BE_CREATED);
+		/* Queue was not created and must not be used. */
+		return HAL_ERROR;
+	}
+	if (canQueueHandle == NULL) {
+		home_error(CAN_TX_QUEUE_CANNOT_BE_CREATED);
 		/* Queue was not created and must not be used. */
 		return HAL_ERROR;
 	}
@@ -67,11 +72,11 @@ HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_
 	 }*/
 
 	if (HAL_CAN_Start(&MY_CAN) != HAL_OK) {
-		home_error(MODULE_CAN, CAN_INIT_FAILED);
+		home_error(CAN_INIT_FAILED);
 	}
 
 	if (HAL_CAN_ActivateNotification(&MY_CAN, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK) {
-		home_error(MODULE_CAN, CAN_INIT_FAILED);
+		home_error(CAN_INIT_FAILED);
 	}
 
 	return HAL_OK;
@@ -111,7 +116,7 @@ void putCanMessageToQueueFromInterrupt(uint32_t stdId, uint8_t *dataArray, uint8
 	xHigherPriorityTaskWoken = pdFALSE;
 
 	if (xQueueSendFromISR(canQueueHandle, &canMessage, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
-		home_error(MODULE_CAN, CAN_QUEUE_FULL);
+		home_error(CAN_TX_QUEUE_FULL);
 	}
 
 	/* If xHigherPriorityTaskWoken was set to true you
@@ -191,7 +196,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 	/* Receive */
 
 	if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData) != HAL_OK) {
-		home_error(MODULE_CAN, CAN_FAILED_RX);
+		home_error(CAN_FAILED_RX);
 	}
 
 	RECEIVED_CAN_OBJECT receivedObject;
@@ -212,7 +217,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 	xHigherPriorityTaskWoken = pdFALSE;
 
 	if (xQueueSendFromISR(CAN_RECEIVE_QUEUEHandle, &receivedObject, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
-		home_error(MODULE_SWITCH, SWITCH_QUEUE_FULL);
+		home_error(CAN_RX_QUEUE_FULL);
 	}
 
 	/* If xHigherPriorityTaskWoken was set to true you

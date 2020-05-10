@@ -5,35 +5,35 @@
 uint8_t home_debug_mode = 1;
 
 char endChars[] = "\r\n";
-char errorStart[] = "error at module: ";
-char errorSeparator[] = "; code: ";
+char errorStart[] = "error code: ";
+char warningStart[] = "warning: ";
 
-void home_warning(uint16_t id, uint16_t errorCode) {
-
+void home_warning(char message[]) {
+	writeOut(warningStart);
+	writeOut(message);
+	writeOut(endChars);
 }
-void home_error(uint16_t id, uint16_t errorCode) {
+void home_error(uint16_t errorCode) {
 	writeOut(errorStart);
-	writeOutInt(id);
-	writeOut(errorSeparator);
 	writeOutInt(errorCode);
 	writeOut(endChars);
 }
 
-void home_log(uint16_t id, char message[], uint8_t addEndLine) {
+void home_log(char message[], uint8_t addEndLine) {
 	writeOut(message);
 	if (addEndLine != 0) {
 		writeOut(endChars);
 	}
 }
 
-void home_log_int(uint16_t id, uint32_t message, uint8_t addEndLine) {
+void home_log_int(uint32_t message, uint8_t addEndLine) {
 	writeOutInt(message);
 
 	if (addEndLine != 0) {
 		writeOut(endChars);
 	}
 }
-void home_log_byte_hex(uint16_t id, uint8_t message, uint8_t addEndLine) {
+void home_log_byte_hex(uint8_t message, uint8_t addEndLine) {
 	writeOutByteInHex(message);
 	if (addEndLine != 0) {
 		writeOut(endChars);
@@ -48,7 +48,7 @@ void writeOut(char * str) {
 }
 
 void sendChar(char ch) {
-	//HAL_UART_Transmit(&DEBUG_SERIAL_OUTPUT, (uint8_t *) &ch, 1, 100);
+	HAL_UART_Transmit(&huart1, (uint8_t *) &ch, 1, 100);
 }
 
 void writeOutInt(uint32_t message) {
