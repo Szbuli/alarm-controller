@@ -43,6 +43,13 @@ void checkAndDoFactoryResetIfNeeded() {
 	HAL_NVIC_SystemReset();
 }
 
+void configureTamper(uint8_t state) {
+	HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_TAMPER, state);
+
+	osDelay(100);
+	HAL_NVIC_SystemReset();
+}
+
 void configureSensor(uint16_t typeId, uint8_t state) {
 	HAL_StatusTypeDef status;
 	if (typeId == ALARM_CONTROLLER_SENSOR_SET_1) {
@@ -83,6 +90,7 @@ void configureSensor(uint16_t typeId, uint8_t state) {
 
 void readConfigOnStartup() {
 	homeConfig.deviceId = readByteEEPROM(ADDRESS_DEVICE_ID_PART_0) | readByteEEPROM(ADDRESS_DEVICE_ID_PART_1) << 8;
+	homeConfig.tamper = readByteEEPROM(ADDRESS_TAMPER);
 	homeConfig.alarm_1 = readByteEEPROM(ADDRESS_ALARM_1);
 	homeConfig.alarm_2 = readByteEEPROM(ADDRESS_ALARM_2);
 	homeConfig.alarm_3 = readByteEEPROM(ADDRESS_ALARM_3);
@@ -103,6 +111,7 @@ void readConfigOnStartup() {
 void factoryReset() {
 	HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_0, 0xFF);
 	status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_1, 0xFF);
+	status = writeByteEEPROM(ADDRESS_TAMPER, 0);
 	status = writeByteEEPROM(ADDRESS_ALARM_1, 0);
 	status = writeByteEEPROM(ADDRESS_ALARM_2, 0);
 	status = writeByteEEPROM(ADDRESS_ALARM_3, 0);

@@ -27,6 +27,7 @@
 #define ADDRESS_ALARM_13 22
 #define ADDRESS_ALARM_14 23
 #define ADDRESS_ALARM_15 24
+#define ADDRESS_TAMPER 30
 
 #define STM32_UUID_32 ((uint32_t *)0x1FFF7A10)
 #define STM32_UUID_16 ((uint16_t *)0x1FFF7A10)
@@ -35,6 +36,7 @@ typedef struct {
 	uint8_t listenForDeviceIdMode;
 	uint8_t deviceLoaded;
 	uint16_t deviceId;
+	uint8_t tamper;
 	uint8_t alarm_1;
 	uint8_t alarm_2;
 	uint8_t alarm_3;
@@ -63,5 +65,6 @@ void checkAndDoFactoryResetIfNeeded();
 void readConfigOnStartup();
 void factoryReset();
 void configureSensor(uint16_t canId, uint8_t state);
+void configureTamper(uint8_t state);
 
 #endif /* CONFIG_HOME_CONFIG_H_ */

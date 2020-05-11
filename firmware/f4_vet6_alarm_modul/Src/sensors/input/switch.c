@@ -12,7 +12,7 @@
 TaskHandle_t switchTask = NULL;
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
-	if (homeConfig.deviceLoaded != 1) {
+	if (homeConfig.deviceLoaded != 1 || homeConfig.tamper == 0) { // TODO might be better to disable interrupt
 		return;
 	}
 
@@ -38,7 +38,7 @@ void processTamperEvents() {
 		GPIO_PinState tamper_state = HAL_GPIO_ReadPin(TAMPER_GPIO_Port, TAMPER_Pin);
 
 		if (tamper_state == GPIO_PIN_RESET) {
-			putCanMessageToQueue(ALARM_CONTROLLER_TAMPERED, NULL, 0, CAN_RTR_REMOTE);
+			putCanMessageToQueue(ALARM_CONTROLLER_TAMPER, NULL, 0, CAN_RTR_REMOTE);
 		}
 
 	}

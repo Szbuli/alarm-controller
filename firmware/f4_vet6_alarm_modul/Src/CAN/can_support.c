@@ -186,6 +186,8 @@ void receiveCANMessageFromQueue() {
 						|| typeId == ALARM_CONTROLLER_SENSOR_SET_13 || typeId == ALARM_CONTROLLER_SENSOR_SET_14
 						|| typeId == ALARM_CONTROLLER_SENSOR_SET_15) {
 					configureSensor(typeId, receivedObject.data0);
+				} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_TAMPER) {
+					configureTamper(receivedObject.data0);
 				}
 			}
 		}
