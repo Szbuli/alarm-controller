@@ -26,7 +26,7 @@ HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_
 	canQueueHandle = canQueueHandleArgument;
 	CAN_RECEIVE_QUEUEHandle = CAN_RECEIVE_QUEUEHandleArgument;
 
-	if ( CAN_RECEIVE_QUEUEHandle == NULL) {
+	if (CAN_RECEIVE_QUEUEHandle == NULL) {
 		home_error(CAN_RX_QUEUE_CANNOT_BE_CREATED);
 		/* Queue was not created and must not be used. */
 		return HAL_ERROR;
@@ -177,16 +177,16 @@ void receiveCANMessageFromQueue() {
 					factoryReset();
 					osDelay(100);
 					HAL_NVIC_SystemReset();
-				} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_1 || typeId == ALARM_CONTROLLER_SENSOR_SET_2
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_3 || typeId == ALARM_CONTROLLER_SENSOR_SET_4
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_5 || typeId == ALARM_CONTROLLER_SENSOR_SET_6
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_7 || typeId == ALARM_CONTROLLER_SENSOR_SET_8
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_9 || typeId == ALARM_CONTROLLER_SENSOR_SET_10
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_11 || typeId == ALARM_CONTROLLER_SENSOR_SET_12
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_13 || typeId == ALARM_CONTROLLER_SENSOR_SET_14
-						|| typeId == ALARM_CONTROLLER_SENSOR_SET_15) {
+				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_15) {
 					configureSensor(typeId, receivedObject.data0);
-				} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_TAMPER) {
+				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_TAMPER) {
 					configureTamper(receivedObject.data0);
 				}
 			}

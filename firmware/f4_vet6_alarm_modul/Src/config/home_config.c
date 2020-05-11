@@ -52,35 +52,35 @@ void configureTamper(uint8_t state) {
 
 void configureSensor(uint16_t typeId, uint8_t state) {
 	HAL_StatusTypeDef status;
-	if (typeId == ALARM_CONTROLLER_SENSOR_SET_1) {
+	if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1) {
 		status = writeByteEEPROM(ADDRESS_ALARM_1, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_2) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2) {
 		status = writeByteEEPROM(ADDRESS_ALARM_2, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_3) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3) {
 		status = writeByteEEPROM(ADDRESS_ALARM_3, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_4) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4) {
 		status = writeByteEEPROM(ADDRESS_ALARM_4, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_5) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5) {
 		status = writeByteEEPROM(ADDRESS_ALARM_5, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_6) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6) {
 		status = writeByteEEPROM(ADDRESS_ALARM_6, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_7) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7) {
 		status = writeByteEEPROM(ADDRESS_ALARM_7, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_8) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8) {
 		status = writeByteEEPROM(ADDRESS_ALARM_8, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_9) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9) {
 		status = writeByteEEPROM(ADDRESS_ALARM_9, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_10) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10) {
 		status = writeByteEEPROM(ADDRESS_ALARM_10, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_11) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11) {
 		status = writeByteEEPROM(ADDRESS_ALARM_11, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_12) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12) {
 		status = writeByteEEPROM(ADDRESS_ALARM_12, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_13) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13) {
 		status = writeByteEEPROM(ADDRESS_ALARM_13, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_14) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14) {
 		status = writeByteEEPROM(ADDRESS_ALARM_14, state);
-	} else if (typeId == ALARM_CONTROLLER_SENSOR_SET_15) {
+	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_15) {
 		status = writeByteEEPROM(ADDRESS_ALARM_15, state);
 	}
 
