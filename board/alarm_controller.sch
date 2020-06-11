@@ -15550,6 +15550,70 @@ You are welcome to use this library for commercial purposes. For attribution, we
 </deviceset>
 </devicesets>
 </library>
+<library name="jumper">
+<description>&lt;b&gt;Jumpers&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="JP1">
+<description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
+<wire x1="-1.016" y1="0" x2="-1.27" y2="0.254" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="0" x2="-1.27" y2="-0.254" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="0" x2="1.27" y2="0.254" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="0" x2="1.27" y2="-0.254" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-0.254" x2="1.27" y2="-2.286" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="-2.54" x2="1.27" y2="-2.286" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="2.286" x2="1.016" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="2.286" x2="1.27" y2="0.254" width="0.1524" layer="21"/>
+<wire x1="1.016" y1="2.54" x2="-1.016" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="2.286" x2="-1.016" y2="2.54" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="2.286" x2="-1.27" y2="0.254" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.254" x2="-1.27" y2="-2.286" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-2.54" x2="-1.27" y2="-2.286" width="0.1524" layer="21"/>
+<wire x1="-1.016" y1="-2.54" x2="1.016" y2="-2.54" width="0.1524" layer="21"/>
+<pad name="1" x="0" y="-1.27" drill="0.9144" shape="long"/>
+<pad name="2" x="0" y="1.27" drill="0.9144" shape="long"/>
+<text x="-1.651" y="-2.54" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="2.921" y="-2.54" size="1.27" layer="27" ratio="10" rot="R90">&gt;VALUE</text>
+<rectangle x1="-0.3048" y1="0.9652" x2="0.3048" y2="1.5748" layer="51"/>
+<rectangle x1="-0.3048" y1="-1.5748" x2="0.3048" y2="-0.9652" layer="51"/>
+</package>
+</packages>
+<symbols>
+<symbol name="J1">
+<wire x1="0" y1="2.54" x2="0" y2="3.81" width="0.4064" layer="94"/>
+<wire x1="0" y1="3.81" x2="0" y2="5.08" width="0.1524" layer="94"/>
+<wire x1="0" y1="-2.54" x2="0" y2="-3.81" width="0.4064" layer="94"/>
+<wire x1="0" y1="-3.81" x2="0" y2="-5.08" width="0.1524" layer="94"/>
+<wire x1="-1.905" y1="5.08" x2="1.905" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="1.905" y1="5.08" x2="1.905" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="1.905" y1="-5.08" x2="-1.905" y2="-5.08" width="0.4064" layer="94"/>
+<wire x1="-1.905" y1="-5.08" x2="-1.905" y2="5.08" width="0.4064" layer="94"/>
+<text x="-2.54" y="-5.08" size="1.778" layer="95" rot="R90">&gt;NAME</text>
+<text x="4.445" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
+<pin name="1" x="0" y="-7.62" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="2" x="0" y="7.62" visible="pad" length="short" direction="pas" rot="R270"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="JP1Q" prefix="JP" uservalue="yes">
+<description>&lt;b&gt;JUMPER&lt;/b&gt;</description>
+<gates>
+<gate name="A" symbol="J1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="JP1">
+<connects>
+<connect gate="A" pin="1" pad="1"/>
+<connect gate="A" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -15630,13 +15694,13 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="+3V21" library="supply1" deviceset="+3V3" device=""/>
 <part name="PAD1" library="wirepad" deviceset="WIREPAD" device="SMD5-1,8"/>
 <part name="PAD2" library="wirepad" deviceset="WIREPAD" device="SMD5-1,8"/>
-<part name="R6" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R9" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R6" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R9" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="P+2" library="supply1" deviceset="+12V" device=""/>
 <part name="D6" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V12" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
-<part name="C25" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C25" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND43" library="supply1" deviceset="GND" device=""/>
 <part name="GND38" library="supply1" deviceset="GND" device=""/>
 <part name="ALARMS" library="SparkFun-Connectors" deviceset="CONN_06" device="3.5MM-6"/>
@@ -15644,142 +15708,142 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND" library="SparkFun-Connectors" deviceset="CONN_02" device="3.5MM"/>
 <part name="ALARMS2" library="SparkFun-Connectors" deviceset="CONN_03" device="SCREW_LOCK"/>
 <part name="ALARMS1" library="SparkFun-Connectors" deviceset="CONN_06" device="3.5MM-6"/>
-<part name="R8" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R10" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R8" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R10" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D1" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
-<part name="C11" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C11" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND24" library="supply1" deviceset="GND" device=""/>
 <part name="GND27" library="supply1" deviceset="GND" device=""/>
-<part name="R11" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R7" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R12" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R11" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R7" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R12" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D2" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V4" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND29" library="supply1" deviceset="GND" device=""/>
-<part name="C24" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C24" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND37" library="supply1" deviceset="GND" device=""/>
 <part name="GND39" library="supply1" deviceset="GND" device=""/>
-<part name="R13" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R14" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R15" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R13" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R14" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R15" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D3" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V11" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND40" library="supply1" deviceset="GND" device=""/>
-<part name="C27" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C27" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND41" library="supply1" deviceset="GND" device=""/>
 <part name="GND44" library="supply1" deviceset="GND" device=""/>
-<part name="R16" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R17" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R18" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R16" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R17" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R18" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D4" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V14" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND45" library="supply1" deviceset="GND" device=""/>
-<part name="C28" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C28" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND46" library="supply1" deviceset="GND" device=""/>
 <part name="GND47" library="supply1" deviceset="GND" device=""/>
-<part name="R19" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R20" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R21" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R19" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R20" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R21" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D7" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V16" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND48" library="supply1" deviceset="GND" device=""/>
-<part name="C29" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C29" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND49" library="supply1" deviceset="GND" device=""/>
 <part name="GND50" library="supply1" deviceset="GND" device=""/>
-<part name="R22" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R23" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R26" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R22" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R23" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R26" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D8" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V18" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND51" library="supply1" deviceset="GND" device=""/>
-<part name="C30" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C30" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND52" library="supply1" deviceset="GND" device=""/>
 <part name="GND53" library="supply1" deviceset="GND" device=""/>
-<part name="R28" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R29" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R30" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R28" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R29" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R30" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D9" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V19" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND54" library="supply1" deviceset="GND" device=""/>
-<part name="C31" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C31" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND55" library="supply1" deviceset="GND" device=""/>
 <part name="GND56" library="supply1" deviceset="GND" device=""/>
-<part name="R31" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R32" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R33" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R31" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R32" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R33" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D10" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V20" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND57" library="supply1" deviceset="GND" device=""/>
-<part name="C32" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C32" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND58" library="supply1" deviceset="GND" device=""/>
 <part name="GND59" library="supply1" deviceset="GND" device=""/>
-<part name="R34" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R37" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R38" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R34" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R37" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R38" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D11" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V22" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND60" library="supply1" deviceset="GND" device=""/>
-<part name="C33" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C33" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND61" library="supply1" deviceset="GND" device=""/>
 <part name="GND62" library="supply1" deviceset="GND" device=""/>
-<part name="R39" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R40" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R41" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R39" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R40" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R41" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D12" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V23" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND63" library="supply1" deviceset="GND" device=""/>
-<part name="C34" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C34" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND64" library="supply1" deviceset="GND" device=""/>
 <part name="GND65" library="supply1" deviceset="GND" device=""/>
-<part name="R42" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R43" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R44" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R42" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R43" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R44" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D13" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V24" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND66" library="supply1" deviceset="GND" device=""/>
-<part name="C35" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C35" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND67" library="supply1" deviceset="GND" device=""/>
 <part name="GND68" library="supply1" deviceset="GND" device=""/>
-<part name="R45" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R46" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R47" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R45" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R46" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R47" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D14" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V25" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND69" library="supply1" deviceset="GND" device=""/>
-<part name="C36" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C36" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND70" library="supply1" deviceset="GND" device=""/>
 <part name="GND71" library="supply1" deviceset="GND" device=""/>
-<part name="R48" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R49" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R50" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R48" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R49" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R50" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D15" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V26" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND72" library="supply1" deviceset="GND" device=""/>
-<part name="C37" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C37" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND73" library="supply1" deviceset="GND" device=""/>
 <part name="GND74" library="supply1" deviceset="GND" device=""/>
-<part name="R51" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R52" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R53" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R51" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R52" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R53" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D16" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V27" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND75" library="supply1" deviceset="GND" device=""/>
-<part name="C38" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C38" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND76" library="supply1" deviceset="GND" device=""/>
 <part name="GND77" library="supply1" deviceset="GND" device=""/>
-<part name="R54" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R55" library="rcl" deviceset="R-EU_" device="R0402" value="68k"/>
-<part name="R56" library="rcl" deviceset="R-EU_" device="R0402" value="20k"/>
+<part name="R54" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R55" library="rcl" deviceset="R-EU_" device="R0603" value="68k"/>
+<part name="R56" library="rcl" deviceset="R-EU_" device="R0603" value="20k"/>
 <part name="D17" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V28" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND78" library="supply1" deviceset="GND" device=""/>
-<part name="C39" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C39" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="GND79" library="supply1" deviceset="GND" device=""/>
 <part name="GND80" library="supply1" deviceset="GND" device=""/>
-<part name="R57" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
-<part name="R58" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
+<part name="R57" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
+<part name="R58" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
 <part name="P+22" library="supply1" deviceset="+12V" device=""/>
 <part name="P+23" library="supply1" deviceset="+12V" device=""/>
 <part name="GND81" library="supply1" deviceset="GND" device=""/>
@@ -15793,15 +15857,15 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND84" library="SparkFun-Connectors" deviceset="CONN_02" device="3.5MM"/>
 <part name="+3V30" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND85" library="supply1" deviceset="GND" device=""/>
-<part name="R59" library="rcl" deviceset="R-EU_" device="R0402" value="10k"/>
+<part name="R59" library="rcl" deviceset="R-EU_" device="R0603" value="10k"/>
 <part name="GND86" library="supply1" deviceset="GND" device=""/>
-<part name="C2" library="eagle-ltspice" deviceset="C" device="C0402" value="10nF"/>
+<part name="C2" library="eagle-ltspice" deviceset="C" device="C0603" value="10nF"/>
 <part name="D18" library="diode" deviceset="BAS70-04" device=""/>
 <part name="+3V31" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND87" library="supply1" deviceset="GND" device=""/>
-<part name="R60" library="rcl" deviceset="R-EU_" device="R0402" value="100"/>
-<part name="R61" library="rcl" deviceset="R-EU_" device="R0402" value="100"/>
-<part name="R62" library="rcl" deviceset="R-EU_" device="R0402" value="1k"/>
+<part name="R60" library="rcl" deviceset="R-EU_" device="R0603" value="100"/>
+<part name="R61" library="rcl" deviceset="R-EU_" device="R0603" value="100"/>
+<part name="R62" library="rcl" deviceset="R-EU_" device="R0603" value="1k"/>
 <part name="F1" library="polyfuse-smd_10" deviceset="?" device="1210L" technology="010"/>
 <part name="GND8" library="SparkFun-Connectors" deviceset="CONN_02" device="3.5MM"/>
 <part name="F2" library="fuse" deviceset="TE5" device=""/>
@@ -15818,6 +15882,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <part name="GND16" library="supply1" deviceset="GND" device=""/>
 <part name="S2" library="SparkFun-Switches" deviceset="MOMENTARY-SWITCH-SPST-2" device="-SMD-4.6X2.8MM"/>
 <part name="J1" library="SparkFun-Connectors" deviceset="CONN_02" device=""/>
+<part name="JP1" library="jumper" deviceset="JP1Q" device=""/>
+<part name="GND17" library="supply1" deviceset="GND" device=""/>
+<part name="GND18" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15872,6 +15939,9 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <instance part="+3V17" gate="G$1" x="-35.56" y="134.62" rot="R270"/>
 <instance part="GND88" gate="1" x="-50.8" y="127" rot="R90"/>
 <instance part="P+7" gate="1" x="-50.8" y="119.38" rot="R270"/>
+<instance part="JP1" gate="A" x="-190.5" y="-2.54" rot="R90"/>
+<instance part="GND17" gate="1" x="-284.48" y="-20.32"/>
+<instance part="GND18" gate="1" x="-248.92" y="-20.32"/>
 </instances>
 <busses>
 </busses>
@@ -15989,6 +16059,16 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="GND88" gate="1" pin="GND"/>
 <pinref part="U$4" gate="G$1" pin="GND"/>
 <wire x1="-53.34" y1="127" x2="-58.42" y2="127" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="X1" gate="G$1" pin="8"/>
+<wire x1="-284.48" y1="-12.7" x2="-284.48" y2="-17.78" width="0.1524" layer="91"/>
+<pinref part="GND17" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="X2" gate="G$1" pin="8"/>
+<wire x1="-248.92" y1="-12.7" x2="-248.92" y2="-17.78" width="0.1524" layer="91"/>
+<pinref part="GND18" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="+3V3" class="0">
@@ -16216,6 +16296,50 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <pinref part="U$4" gate="G$1" pin="OUT"/>
 <pinref part="F1" gate="G$1" pin="2"/>
 <wire x1="-53.34" y1="134.62" x2="-58.42" y2="134.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="RJ45_12V" class="0">
+<segment>
+<pinref part="X1" gate="G$1" pin="4"/>
+<wire x1="-294.64" y1="-12.7" x2="-294.64" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-294.64" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X1" gate="G$1" pin="5"/>
+<wire x1="-292.1" y1="-12.7" x2="-292.1" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-292.1" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X1" gate="G$1" pin="6"/>
+<wire x1="-289.56" y1="-12.7" x2="-289.56" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-289.56" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="JP1" gate="A" pin="2"/>
+<wire x1="-198.12" y1="-2.54" x2="-205.74" y2="-2.54" width="0.1524" layer="91"/>
+<label x="-205.74" y="-2.54" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X2" gate="G$1" pin="4"/>
+<wire x1="-259.08" y1="-12.7" x2="-259.08" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-259.08" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X2" gate="G$1" pin="5"/>
+<wire x1="-256.54" y1="-12.7" x2="-256.54" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-256.54" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X2" gate="G$1" pin="6"/>
+<wire x1="-254" y1="-12.7" x2="-254" y2="-25.4" width="0.1524" layer="91"/>
+<label x="-254" y="-25.4" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+</net>
+<net name="PRE_FUSE_12V" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="1"/>
+<wire x1="-182.88" y1="-2.54" x2="-175.26" y2="-2.54" width="0.1524" layer="91"/>
+<label x="-175.26" y="-2.54" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
@@ -17888,7 +18012,7 @@ You are welcome to use this library for commercial purposes. For attribution, we
 <junction x="-71.12" y="35.56"/>
 </segment>
 </net>
-<net name="N$14" class="0">
+<net name="PRE_FUSE_12V" class="0">
 <segment>
 <pinref part="GND8" gate="G$1" pin="2"/>
 <pinref part="F2" gate="1" pin="1"/>
