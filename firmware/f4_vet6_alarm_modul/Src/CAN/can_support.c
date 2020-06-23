@@ -188,6 +188,8 @@ void receiveCANMessageFromQueue() {
 					configureSensor(typeId, receivedObject.data0);
 				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_TAMPER) {
 					configureTamper(receivedObject.data0);
+				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_HEARTBEAT) {
+					configureHeartbeat(receivedObject.data0);
 				}
 			}
 		}
