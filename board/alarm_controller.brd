@@ -2070,6 +2070,8 @@ TERMINATION</text>
 <text x="59.866" y="47.4428" size="0.8128" layer="121" align="center">C9</text>
 <text x="55.016" y="49.6928" size="0.8128" layer="121" align="center">R5</text>
 <text x="54.516" y="53.1928" size="0.8128" layer="121" align="center">R14</text>
+<text x="68.8" y="36.85" size="1.27" layer="121">0</text>
+<text x="71.3" y="36.85" size="1.27" layer="121">X</text>
 </plain>
 <libraries>
 <library name="SparkFun-Connectors">
