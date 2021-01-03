@@ -1,7 +1,7 @@
 /*
  * home_config.c
  *
- *  Created on: 2017. máj. 23.
+ *  Created on: 2017.05.23.
  *      Author: Szbuli
  */
 
@@ -45,51 +45,50 @@ void checkAndDoFactoryResetIfNeeded() {
 }
 
 void configureTamper(uint8_t state) {
-	HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_TAMPER, state);
+	writeByteEEPROM(ADDRESS_TAMPER, state);
 
 	osDelay(100);
 	HAL_NVIC_SystemReset();
 }
 
 void configureHeartbeat(uint8_t state) {
-	HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_HEARTBEAT, state);
+	writeByteEEPROM(ADDRESS_HEARTBEAT, state);
 
 	osDelay(100);
 	HAL_NVIC_SystemReset();
 }
 
 void configureSensor(uint16_t typeId, uint8_t state) {
-	HAL_StatusTypeDef status;
 	if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1) {
-		status = writeByteEEPROM(ADDRESS_ALARM_1, state);
+		writeByteEEPROM(ADDRESS_ALARM_1, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2) {
-		status = writeByteEEPROM(ADDRESS_ALARM_2, state);
+		writeByteEEPROM(ADDRESS_ALARM_2, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3) {
-		status = writeByteEEPROM(ADDRESS_ALARM_3, state);
+		writeByteEEPROM(ADDRESS_ALARM_3, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4) {
-		status = writeByteEEPROM(ADDRESS_ALARM_4, state);
+		writeByteEEPROM(ADDRESS_ALARM_4, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5) {
-		status = writeByteEEPROM(ADDRESS_ALARM_5, state);
+		writeByteEEPROM(ADDRESS_ALARM_5, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6) {
-		status = writeByteEEPROM(ADDRESS_ALARM_6, state);
+		writeByteEEPROM(ADDRESS_ALARM_6, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7) {
-		status = writeByteEEPROM(ADDRESS_ALARM_7, state);
+		writeByteEEPROM(ADDRESS_ALARM_7, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8) {
-		status = writeByteEEPROM(ADDRESS_ALARM_8, state);
+		writeByteEEPROM(ADDRESS_ALARM_8, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9) {
-		status = writeByteEEPROM(ADDRESS_ALARM_9, state);
+		writeByteEEPROM(ADDRESS_ALARM_9, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10) {
-		status = writeByteEEPROM(ADDRESS_ALARM_10, state);
+		writeByteEEPROM(ADDRESS_ALARM_10, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11) {
-		status = writeByteEEPROM(ADDRESS_ALARM_11, state);
+		writeByteEEPROM(ADDRESS_ALARM_11, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12) {
-		status = writeByteEEPROM(ADDRESS_ALARM_12, state);
+		writeByteEEPROM(ADDRESS_ALARM_12, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13) {
-		status = writeByteEEPROM(ADDRESS_ALARM_13, state);
+		writeByteEEPROM(ADDRESS_ALARM_13, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14) {
-		status = writeByteEEPROM(ADDRESS_ALARM_14, state);
+		writeByteEEPROM(ADDRESS_ALARM_14, state);
 	} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_15) {
-		status = writeByteEEPROM(ADDRESS_ALARM_15, state);
+		writeByteEEPROM(ADDRESS_ALARM_15, state);
 	}
 
 	osDelay(100);
@@ -118,23 +117,23 @@ void readConfigOnStartup() {
 }
 
 void factoryReset() {
-	HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_0, 0xFF);
-	status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_1, 0xFF);
-	status = writeByteEEPROM(ADDRESS_TAMPER, 0);
-	status = writeByteEEPROM(ADDRESS_HEARTBEAT, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_1, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_2, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_3, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_4, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_5, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_6, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_7, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_8, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_9, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_10, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_11, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_12, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_13, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_14, 0);
-	status = writeByteEEPROM(ADDRESS_ALARM_15, 0);
+	writeByteEEPROM(ADDRESS_DEVICE_ID_PART_0, 0xFF);
+	writeByteEEPROM(ADDRESS_DEVICE_ID_PART_1, 0xFF);
+	writeByteEEPROM(ADDRESS_TAMPER, 0);
+	writeByteEEPROM(ADDRESS_HEARTBEAT, 0);
+	writeByteEEPROM(ADDRESS_ALARM_1, 0);
+	writeByteEEPROM(ADDRESS_ALARM_2, 0);
+	writeByteEEPROM(ADDRESS_ALARM_3, 0);
+	writeByteEEPROM(ADDRESS_ALARM_4, 0);
+	writeByteEEPROM(ADDRESS_ALARM_5, 0);
+	writeByteEEPROM(ADDRESS_ALARM_6, 0);
+	writeByteEEPROM(ADDRESS_ALARM_7, 0);
+	writeByteEEPROM(ADDRESS_ALARM_8, 0);
+	writeByteEEPROM(ADDRESS_ALARM_9, 0);
+	writeByteEEPROM(ADDRESS_ALARM_10, 0);
+	writeByteEEPROM(ADDRESS_ALARM_11, 0);
+	writeByteEEPROM(ADDRESS_ALARM_12, 0);
+	writeByteEEPROM(ADDRESS_ALARM_13, 0);
+	writeByteEEPROM(ADDRESS_ALARM_14, 0);
+	writeByteEEPROM(ADDRESS_ALARM_15, 0);
 }
