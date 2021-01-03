@@ -142,9 +142,7 @@ void sendCANMessageFromQueue() {
 				TxHeader.DLC = canObjectPointer->DLC;
 				TxHeader.RTR = canObjectPointer->RTR;
 
-				//HAL_StatusTypeDef status = HAL_CAN_Transmit(&MY_CAN, 100);
-
-				HAL_StatusTypeDef status = HAL_CAN_AddTxMessage(&MY_CAN, &TxHeader, TxData, &TxMailbox);
+				HAL_CAN_AddTxMessage(&MY_CAN, &TxHeader, TxData, &TxMailbox);
 
 				//just free now, error handling required
 				vPortFree(canObjectPointer->data);
@@ -167,8 +165,8 @@ void receiveCANMessageFromQueue() {
 				if (homeConfig.listenForDeviceIdMode != 0) {
 					if (typeId == ALARM_CONTROLLER_DEVICE_ID) {
 						factoryReset();
-						HAL_StatusTypeDef status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_0, receivedObject.data0);
-						status = writeByteEEPROM(ADDRESS_DEVICE_ID_PART_1, receivedObject.data1);
+						writeByteEEPROM(ADDRESS_DEVICE_ID_PART_0, receivedObject.data0);
+						writeByteEEPROM(ADDRESS_DEVICE_ID_PART_1, receivedObject.data1);
 						osDelay(100);
 						HAL_NVIC_SystemReset();
 					}
