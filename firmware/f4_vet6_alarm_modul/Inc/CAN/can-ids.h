@@ -1,7 +1,7 @@
 /*
  * can-ids.h
  *
- *  Created on: 2020. ápr. 29.
+ *  Created on: 2020.04.29.
  *      Author: Szbuli
  */
 
@@ -44,5 +44,6 @@
 #define	ALARM_CONTROLLER_HEARTBEAT	47
 #define	ALARM_CONTROLLER_FACTORY_RESET	48
 #define	ALARM_CONTROLLER_CONFIGURE_HEARTBEAT	49
+#define	ALARM_CONTROLLER_HA_SENSOR_CONFIG	50
 
 #endif /* CAN_CAN_IDS_H_ */

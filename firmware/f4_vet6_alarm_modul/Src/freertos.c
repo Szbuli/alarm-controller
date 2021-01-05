@@ -33,6 +33,7 @@
 #include "home_adc.h"
 #include "eeprom.h"
 #include "home_config.h"
+#include "ha_auto_discovery.h"
 
 /* USER CODE END Includes */
 
@@ -264,6 +265,8 @@ void StartInitTask(void const * argument)
 	}
 
 	portENABLE_INTERRUPTS();
+
+	publishConfigForAutoDiscovery();
 
 	vTaskDelete(NULL);
 

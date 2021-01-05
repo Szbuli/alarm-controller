@@ -1,7 +1,7 @@
 /*
  * home_config.h
  *
- *  Created on: 2017. máj. 23.
+ *  Created on: 2017.05.23.
  *      Author: Szbuli
  */
 
@@ -32,6 +32,12 @@
 
 #define STM32_UUID_32 ((uint32_t *)0x1FFF7A10)
 #define STM32_UUID_16 ((uint16_t *)0x1FFF7A10)
+
+#define VERSION_MAJOR 1
+#define VERSION_MINOR 0
+#define VERSION_PATCH 0
+
+#define DEVICE_TYPE_ID_ALARM_CONTROLLER 1
 
 typedef struct {
 	uint8_t listenForDeviceIdMode;
