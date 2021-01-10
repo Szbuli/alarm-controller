@@ -16,7 +16,7 @@ void sendAutoDiscoveryMessage(uint16_t topicId, uint16_t stateTopicId, uint8_t d
 }
 
 void publishConfigForAutoDiscovery() {
-	if (homeConfig.listenForDeviceIdMode != 0) {
+	if (homeConfig.listenForDeviceIdMode == 0) {
 		uint8_t data[] = { VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, DEVICE_TYPE_ID_ALARM_CONTROLLER, 0, 0,
 				ALARM_CONTROLLER_HEARTBEAT >> 8, ALARM_CONTROLLER_HEARTBEAT };
 		if (homeConfig.alarm_1 != 0) {
