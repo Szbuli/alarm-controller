@@ -70,21 +70,18 @@ osMessageQId CAN_RECEIVE_QUEUEHandle;
 
 /* USER CODE END FunctionPrototypes */
 
-void StartCanSendTask(void const * argument);
-void StartAdcTask(void const * argument);
-void StartCanReceiveTask(void const * argument);
-void StartInitTask(void const * argument);
-void StartHeartbeatTask(void const * argument);
-void StartTamperTask(void const * argument);
+void StartCanSendTask(void const *argument);
+void StartAdcTask(void const *argument);
+void StartCanReceiveTask(void const *argument);
+void StartInitTask(void const *argument);
+void StartHeartbeatTask(void const *argument);
+void StartTamperTask(void const *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
-/* Pre/Post sleep processing prototypes */
-void PreSleepProcessing(uint32_t *ulExpectedIdleTime);
-void PostSleepProcessing(uint32_t *ulExpectedIdleTime);
-
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize);
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+		uint32_t *pulIdleTaskStackSize);
 
 /* USER CODE BEGIN PREPOSTSLEEP */
 __weak void PreSleepProcessing(uint32_t *ulExpectedIdleTime) {
@@ -100,8 +97,8 @@ __weak void PostSleepProcessing(uint32_t *ulExpectedIdleTime) {
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
 
-void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize)
-{
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+		uint32_t *pulIdleTaskStackSize) {
 	*ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
 	*ppxIdleTaskStackBuffer = &xIdleStack[0];
 	*pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
@@ -182,15 +179,9 @@ void MX_FREERTOS_Init(void) {
  * @retval None
  */
 /* USER CODE END Header_StartCanSendTask */
-void StartCanSendTask(void const * argument)
-{
+void StartCanSendTask(void const *argument) {
 	/* USER CODE BEGIN StartCanSendTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
-	if (initCan(CAN_SEND_QUEUEHandle, CAN_RECEIVE_QUEUEHandle) != HAL_OK) {
-		home_error(CAN_INIT_FAILED);
-		return;
-	}
-
 	//infinite loop inside
 	sendCANMessageFromQueue();
 	/* USER CODE END StartCanSendTask */
@@ -203,8 +194,7 @@ void StartCanSendTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartAdcTask */
-void StartAdcTask(void const * argument)
-{
+void StartAdcTask(void const *argument) {
 	/* USER CODE BEGIN StartAdcTask */
 	/* Infinite loop */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
@@ -222,8 +212,7 @@ void StartAdcTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartCanReceiveTask */
-void StartCanReceiveTask(void const * argument)
-{
+void StartCanReceiveTask(void const *argument) {
 	/* USER CODE BEGIN StartCanReceiveTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	//infinite loop inside
@@ -238,14 +227,18 @@ void StartCanReceiveTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartInitTask */
-void StartInitTask(void const * argument)
-{
+void StartInitTask(void const *argument) {
 	/* USER CODE BEGIN StartInitTask */
 	portDISABLE_INTERRUPTS();
 
 	checkAndDoFactoryResetIfNeeded();
 
 	readConfigOnStartup();
+
+	if (initCan(CAN_SEND_QUEUEHandle, CAN_RECEIVE_QUEUEHandle) != HAL_OK) {
+		home_error(CAN_INIT_FAILED);
+		return;
+	}
 
 	if (homeConfig.deviceId == 0x0000 || homeConfig.deviceId == 0xFFFF) {
 		homeConfig.listenForDeviceIdMode = 1;
@@ -280,8 +273,7 @@ void StartInitTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartHeartbeatTask */
-void StartHeartbeatTask(void const * argument)
-{
+void StartHeartbeatTask(void const *argument) {
 	/* USER CODE BEGIN StartHeartbeatTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	if (homeConfig.heartbeat != 0) {
@@ -305,8 +297,7 @@ void StartHeartbeatTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartTamperTask */
-void StartTamperTask(void const * argument)
-{
+void StartTamperTask(void const *argument) {
 	/* USER CODE BEGIN StartTamperTask */
 	/* Infinite loop */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
