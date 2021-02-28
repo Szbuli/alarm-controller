@@ -82,7 +82,7 @@ HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_
 	return HAL_OK;
 }
 
-CAN_OBJECT * wrapCanMessage(uint32_t stdId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
+CAN_OBJECT * wrapCanMessage(uint16_t topicId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
 	assert_param(dataLength <= 8);
 
 	vTaskSuspendAll();
@@ -95,7 +95,7 @@ CAN_OBJECT * wrapCanMessage(uint32_t stdId, uint8_t *dataArray, uint8_t dataLeng
 	CAN_OBJECT *canMessage = (CAN_OBJECT*) pvPortMalloc(sizeof(CAN_OBJECT));
 	xTaskResumeAll();
 
-	canMessage->topicId = stdId;
+	canMessage->topicId = topicId;
 	canMessage->DLC = dataLength;
 	canMessage->RTR = RTR;
 	canMessage->data = array;
@@ -141,6 +141,10 @@ void sendCANMessageFromQueue() {
 
 				TxHeader.DLC = canObjectPointer->DLC;
 				TxHeader.RTR = canObjectPointer->RTR;
+
+				while (HAL_CAN_GetTxMailboxesFreeLevel(&MY_CAN) == 0) {
+					osDelay(10);
+				}
 
 				HAL_CAN_AddTxMessage(&MY_CAN, &TxHeader, TxData, &TxMailbox);
 
