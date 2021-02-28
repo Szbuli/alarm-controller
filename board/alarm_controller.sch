@@ -17203,19 +17203,19 @@ Source: www.epcos.com .. 01430148.pdf</description>
 <wire x1="-231.14" y1="-43.18" x2="-231.14" y2="-38.1" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="X4" gate="G$1" pin="5"/>
-<wire x1="-256.54" y1="-10.16" x2="-256.54" y2="-17.78" width="0.1524" layer="91"/>
-<label x="-256.54" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
-<pinref part="X3" gate="G$1" pin="5"/>
-<wire x1="-292.1" y1="-10.16" x2="-292.1" y2="-17.78" width="0.1524" layer="91"/>
-<label x="-292.1" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
 <pinref part="R2" gate="G$1" pin="2"/>
 <wire x1="-200.66" y1="-17.78" x2="-205.74" y2="-17.78" width="0.1524" layer="91"/>
 <label x="-205.74" y="-17.78" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="-302.26" y1="-10.16" x2="-302.26" y2="-17.78" width="0.1524" layer="91"/>
+<label x="-302.26" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
+<pinref part="X3" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<wire x1="-266.7" y1="-10.16" x2="-266.7" y2="-17.78" width="0.1524" layer="91"/>
+<label x="-266.7" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
+<pinref part="X4" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="CAN_L" class="0">
@@ -17230,19 +17230,19 @@ Source: www.epcos.com .. 01430148.pdf</description>
 <label x="-236.22" y="-43.18" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<wire x1="-266.7" y1="-10.16" x2="-266.7" y2="-17.78" width="0.1524" layer="91"/>
-<label x="-266.7" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
-<pinref part="X4" gate="G$1" pin="1"/>
-</segment>
-<segment>
-<wire x1="-302.26" y1="-10.16" x2="-302.26" y2="-17.78" width="0.1524" layer="91"/>
-<label x="-302.26" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
-<pinref part="X3" gate="G$1" pin="1"/>
-</segment>
-<segment>
 <pinref part="JP2" gate="A" pin="1"/>
 <wire x1="-172.72" y1="-17.78" x2="-167.64" y2="-17.78" width="0.1524" layer="91"/>
 <label x="-167.64" y="-17.78" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X3" gate="G$1" pin="5"/>
+<wire x1="-292.1" y1="-10.16" x2="-292.1" y2="-17.78" width="0.1524" layer="91"/>
+<label x="-292.1" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="X4" gate="G$1" pin="5"/>
+<wire x1="-256.54" y1="-10.16" x2="-256.54" y2="-17.78" width="0.1524" layer="91"/>
+<label x="-256.54" y="-17.78" size="1.778" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 <net name="N$17" class="0">
