@@ -251,7 +251,7 @@ R13
 <text x="62.7664" y="52.0156" size="0.8128" layer="122" rot="MR0" align="center">R17</text>
 <text x="56.2664" y="51.0156" size="0.8128" layer="122" rot="MR0" align="center">R15</text>
 <circle x="58.42" y="34.59" radius="0.381" width="0.762" layer="122"/>
-<text x="57.63" y="37.2" size="0.6096" layer="122" rot="MR180">sn65hvd</text>
+<text x="57.28" y="37.2" size="0.6096" layer="122" rot="MR180">sn65hvd230</text>
 <circle x="54.92" y="45.09" radius="0.381" width="0.762" layer="121"/>
 <text x="83.05" y="58.65" size="1.778" layer="121" rot="R90">12V</text>
 <text x="68.25" y="58.1" size="1.778" layer="121" rot="R90">GND</text>
