@@ -191,16 +191,16 @@
 <text x="42.3492" y="24.8896" size="0.8128" layer="122" rot="MR0">C1</text>
 <text x="15.3032" y="25.2156" size="0.8128" layer="122" rot="MR0" align="center">C6</text>
 <text x="15.2748" y="44.6164" size="0.8128" layer="122" rot="MR0" align="center">C6</text>
-<text x="21.7272" y="33.1284" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
+<text x="22.0272" y="32.8784" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
 <text x="23.8664" y="25.7656" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
 <text x="45.5" y="45.2688" size="0.8128" layer="122" rot="MR0" align="center">C3</text>
 <text x="45.4792" y="43.6424" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
 <text x="23.302" y="46.588" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
-<text x="24.3688" y="42.6788" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
+<text x="24.3688" y="42.6788" size="0.6096" layer="122" rot="MR0" align="center">C1</text>
 <text x="19.7084" y="42.2096" size="0.8128" layer="122" rot="MR0" align="center">C2</text>
-<text x="24.2348" y="39.3044" size="0.8128" layer="122" rot="MR90" align="center">C1</text>
-<text x="19.84" y="39.4944" size="0.8128" layer="122" rot="MR0" align="center">C2</text>
-<text x="19.746" y="36.9384" size="0.8128" layer="122" rot="MR0" align="center">C1</text>
+<text x="24.2348" y="39.3044" size="0.6096" layer="122" rot="MR90" align="center">C1</text>
+<text x="20.0556" y="39.34" size="0.6096" layer="122" rot="MR270" align="center">C2</text>
+<text x="20.0616" y="36.946" size="0.6096" layer="122" rot="MR270" align="center">C1</text>
 <text x="14.04" y="36.45" size="0.8128" layer="122" rot="MR270">8Mhz</text>
 <text x="61.57" y="39.9" size="0.6096" layer="122" rot="MR0">slope
 (R22)</text>
@@ -233,15 +233,15 @@ R13
 <text x="19.85" y="1.5" size="1.27" layer="121">4</text>
 <text x="23.45" y="1.5" size="1.27" layer="121">5</text>
 <text x="27.2" y="1.45" size="1.27" layer="121">6</text>
-<text x="37.75" y="1.4" size="1.27" layer="121">7</text>
-<text x="41.35" y="1.4" size="1.27" layer="121">8</text>
-<text x="45" y="1.4" size="1.27" layer="121">9</text>
+<text x="37.65" y="1.4" size="1.27" layer="121">7</text>
+<text x="41" y="1.4" size="1.27" layer="121">8</text>
+<text x="44.75" y="1.4" size="1.27" layer="121">9</text>
 <text x="54.75" y="1.45" size="1.27" layer="121">10</text>
 <text x="58.25" y="1.4" size="1.27" layer="121">11</text>
 <text x="61.8" y="1.4" size="1.27" layer="121">12</text>
 <text x="72.15" y="1.4" size="1.27" layer="121">13</text>
 <text x="75.8" y="1.4" size="1.27" layer="121">14</text>
-<text x="79.5" y="1.4" size="1.27" layer="121">15</text>
+<text x="79.4" y="1.4" size="1.27" layer="121">15</text>
 <text x="11.85" y="1.45" size="1.27" layer="121">GND</text>
 <text x="16.05" y="1.45" size="1.27" layer="121">12V</text>
 <text x="54.7664" y="58.0156" size="0.8128" layer="122" rot="MR0" align="center">R15</text>
@@ -257,9 +257,8 @@ R13
 <text x="35" y="33.5" size="1.778" layer="121">SWDIO</text>
 <text x="74.95" y="49.55" size="0.8128" layer="121">fuse
 1A</text>
-<text x="1.915" y="48.3134" size="1.016" layer="200" font="vector">alarm
-controller
-2021.03.11
+<text x="2.315" y="47.8134" size="1.016" layer="200" font="vector">alarm controller
+2021.03.14
 v1.7</text>
 <rectangle x1="12.3298" y1="27.7654" x2="12.6854" y2="27.8162" layer="200"/>
 <rectangle x1="12.2282" y1="27.8162" x2="13.1934" y2="27.867" layer="200"/>
@@ -2060,7 +2059,7 @@ NATION</text>
 <text x="51.05" y="1.45" size="1.27" layer="121">12V</text>
 <text x="68.55" y="1.45" size="1.27" layer="121">12V</text>
 <text x="86.05" y="1.45" size="1.27" layer="121">12V</text>
-<text x="59.866" y="47.4428" size="0.8128" layer="121" align="center">C9</text>
+<text x="59.966" y="47.4428" size="0.8128" layer="121" align="center">C9</text>
 <text x="55.016" y="49.6928" size="0.8128" layer="121" align="center">R5</text>
 <text x="54.216" y="53.2428" size="0.8128" layer="121" align="center">R14</text>
 <text x="68.8" y="36.85" size="1.27" layer="121">0</text>
@@ -3147,7 +3146,7 @@ design rules under a new name.</description>
 <element name="TP3" library="testpad" package="TP20R" value="TPSTP20R" x="64" y="48">
 <attribute name="TP_SIGNAL_NAME" value="" x="64" y="48" size="1.778" layer="27" display="off"/>
 </element>
-<element name="R59" library="microbuilder" package="0603" value="10k" x="61" y="58.1" rot="MR0"/>
+<element name="R59" library="microbuilder" package="0603" value="10k" x="61" y="58" rot="MR0"/>
 <element name="D18" library="diode" package="SOT23" value="BAS70-04" x="55" y="54.5" rot="MR90"/>
 <element name="R60" library="microbuilder" package="0603" value="100" x="57.5" y="58" rot="MR0"/>
 <element name="R61" library="microbuilder" package="0603" value="100" x="58" y="52.5" rot="MR0"/>
@@ -4818,10 +4817,10 @@ design rules under a new name.</description>
 <wire x1="60.6" y1="53.85" x2="61.75" y2="54.9" width="0.254" layer="16"/>
 <wire x1="61.75" y1="54.9" x2="61.75" y2="56" width="0.254" layer="16"/>
 <contactref element="12V2" pad="1"/>
-<wire x1="61.85" y1="58.1" x2="61.85" y2="60.15" width="0.3048" layer="16"/>
+<wire x1="61.85" y1="58" x2="61.85" y2="60.15" width="0.3048" layer="16"/>
 <wire x1="61.85" y1="60.15" x2="61.5" y2="60.5" width="0.3048" layer="16"/>
 <contactref element="C11" pad="2"/>
-<wire x1="61.85" y1="56" x2="61.85" y2="58.1" width="0.3048" layer="16"/>
+<wire x1="61.85" y1="56" x2="61.85" y2="58" width="0.3048" layer="16"/>
 <wire x1="61.85" y1="56" x2="61.75" y2="56" width="0.3048" layer="16"/>
 </signal>
 <signal name="PRE_FUSE_12V">
@@ -4845,8 +4844,8 @@ design rules under a new name.</description>
 <wire x1="41.5" y1="55.5" x2="25" y2="55.5" width="1.4224" layer="16"/>
 <wire x1="25" y1="55.5" x2="24.865" y2="55.365" width="1.4224" layer="16"/>
 <wire x1="24.865" y1="55.365" x2="24.865" y2="53.15" width="1.4224" layer="16"/>
-<wire x1="41.415" y1="53.15" x2="41.365" y2="55.365" width="1.4224" layer="16"/>
-<wire x1="41.365" y1="55.365" x2="41.5" y2="55.5" width="1.4224" layer="16" curve="-90"/>
+<wire x1="41.415" y1="53.15" x2="41.415" y2="55.415" width="1.4224" layer="16"/>
+<wire x1="41.415" y1="55.415" x2="41.5" y2="55.5" width="1.4224" layer="16" curve="-90"/>
 <wire x1="23.595" y1="50.61" x2="24.865" y2="51.88" width="1.4224" layer="1"/>
 <wire x1="26.135" y1="50.61" x2="24.865" y2="51.88" width="1.4224" layer="1"/>
 <wire x1="24.865" y1="51.88" x2="24.865" y2="53.15" width="1.4224" layer="1"/>
