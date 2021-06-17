@@ -10238,6 +10238,7 @@ chip</description>
 <pinref part="C23" gate="G$1" pin="P$1"/>
 <pinref part="C27" gate="G$1" pin="P$1"/>
 <pinref part="C17" gate="G$1" pin="P$1"/>
+<junction x="7.62" y="-35.56"/>
 </segment>
 <segment>
 <pinref part="DA1" gate="G$1" pin="VCC"/>
@@ -10999,7 +11000,8 @@ chip</description>
 <wire x1="-30.48" y1="129.54" x2="-26.67" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="-26.67" y1="129.54" x2="-26.67" y2="124.46" width="0.1524" layer="91"/>
 <junction x="-30.48" y="129.54"/>
-<label x="-25.4" y="116.84" size="1.778" layer="95" xref="yes"/>
+<label x="-26.67" y="116.84" size="1.778" layer="95" xref="yes"/>
+<junction x="-26.67" y="124.46"/>
 </segment>
 </net>
 </nets>
