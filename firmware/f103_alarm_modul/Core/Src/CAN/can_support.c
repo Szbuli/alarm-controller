@@ -82,11 +82,11 @@ HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_
 	return HAL_OK;
 }
 
-CAN_OBJECT * wrapCanMessage(uint16_t topicId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
+CAN_OBJECT* wrapCanMessage(uint16_t topicId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
 	assert_param(dataLength <= 8);
 
 	vTaskSuspendAll();
-	uint8_t *array = (uint8_t *) pvPortMalloc(dataLength * sizeof(uint8_t));
+	uint8_t *array = (uint8_t*) pvPortMalloc(dataLength * sizeof(uint8_t));
 
 	for (uint8_t i = 0; i < dataLength; i++) {
 		array[i] = dataArray[i];
@@ -146,7 +146,10 @@ void sendCANMessageFromQueue() {
 					osDelay(10);
 				}
 
-				HAL_CAN_AddTxMessage(&MY_CAN, &TxHeader, TxData, &TxMailbox);
+				HAL_StatusTypeDef status = HAL_CAN_AddTxMessage(&MY_CAN, &TxHeader, TxData, &TxMailbox);
+				if (status != HAL_OK) {
+					home_error(CAN_FAILED_TX);
+				}
 
 				//just free now, error handling required
 				vPortFree(canObjectPointer->data);
@@ -179,13 +182,20 @@ void receiveCANMessageFromQueue() {
 					factoryReset();
 					osDelay(100);
 					HAL_NVIC_SystemReset();
-				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14
+				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14
 						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_15) {
 					configureSensor(typeId, receivedObject.data0);
 				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_TAMPER) {
