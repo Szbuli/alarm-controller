@@ -148,7 +148,7 @@ void MX_FREERTOS_Init(void) {
   canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
 
   /* definition and creation of adcTask */
-  osThreadDef(adcTask, StartAdcTask, osPriorityIdle, 0, 128);
+  osThreadDef(adcTask, StartAdcTask, osPriorityAboveNormal, 0, 128);
   adcTaskHandle = osThreadCreate(osThread(adcTask), NULL);
 
   /* definition and creation of canReceiveTask */
@@ -156,15 +156,15 @@ void MX_FREERTOS_Init(void) {
   canReceiveTaskHandle = osThreadCreate(osThread(canReceiveTask), NULL);
 
   /* definition and creation of initTask */
-  osThreadDef(initTask, StartInitTask, osPriorityRealtime, 0, 128);
+  osThreadDef(initTask, StartInitTask, osPriorityHigh, 0, 128);
   initTaskHandle = osThreadCreate(osThread(initTask), NULL);
 
   /* definition and creation of heartbeatTask */
-  osThreadDef(heartbeatTask, StartHeartbeatTask, osPriorityIdle, 0, 128);
+  osThreadDef(heartbeatTask, StartHeartbeatTask, osPriorityLow, 0, 128);
   heartbeatTaskHandle = osThreadCreate(osThread(heartbeatTask), NULL);
 
   /* definition and creation of tamperTask */
-  osThreadDef(tamperTask, StartTamperTask, osPriorityIdle, 0, 128);
+  osThreadDef(tamperTask, StartTamperTask, osPriorityNormal, 0, 128);
   tamperTaskHandle = osThreadCreate(osThread(tamperTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
