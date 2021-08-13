@@ -70,27 +70,26 @@ osMessageQId CAN_RECEIVE_QUEUEHandle;
 
 /* USER CODE END FunctionPrototypes */
 
-void StartCanSendTask(void const * argument);
-void StartAdcTask(void const * argument);
-void StartCanReceiveTask(void const * argument);
-void StartInitTask(void const * argument);
-void StartHeartbeatTask(void const * argument);
-void StartTamperTask(void const * argument);
+void StartCanSendTask(void const *argument);
+void StartAdcTask(void const *argument);
+void StartCanReceiveTask(void const *argument);
+void StartInitTask(void const *argument);
+void StartHeartbeatTask(void const *argument);
+void StartTamperTask(void const *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize );
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+		uint32_t *pulIdleTaskStackSize);
 
 /* USER CODE BEGIN PREPOSTSLEEP */
-__weak void PreSleepProcessing(uint32_t *ulExpectedIdleTime)
-{
-/* place for user code */
+__weak void PreSleepProcessing(uint32_t *ulExpectedIdleTime) {
+	/* place for user code */
 }
 
-__weak void PostSleepProcessing(uint32_t *ulExpectedIdleTime)
-{
-/* place for user code */
+__weak void PostSleepProcessing(uint32_t *ulExpectedIdleTime) {
+	/* place for user code */
 }
 /* USER CODE END PREPOSTSLEEP */
 
@@ -98,78 +97,78 @@ __weak void PostSleepProcessing(uint32_t *ulExpectedIdleTime)
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
 
-void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize )
-{
-  *ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
-  *ppxIdleTaskStackBuffer = &xIdleStack[0];
-  *pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
-  /* place for user code */
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
+		uint32_t *pulIdleTaskStackSize) {
+	*ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
+	*ppxIdleTaskStackBuffer = &xIdleStack[0];
+	*pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
+	/* place for user code */
 }
 /* USER CODE END GET_IDLE_TASK_MEMORY */
 
 /**
-  * @brief  FreeRTOS initialization
-  * @param  None
-  * @retval None
-  */
+ * @brief  FreeRTOS initialization
+ * @param  None
+ * @retval None
+ */
 void MX_FREERTOS_Init(void) {
-  /* USER CODE BEGIN Init */
+	/* USER CODE BEGIN Init */
 
-  /* USER CODE END Init */
+	/* USER CODE END Init */
 
-  /* USER CODE BEGIN RTOS_MUTEX */
+	/* USER CODE BEGIN RTOS_MUTEX */
 	/* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
+	/* USER CODE END RTOS_MUTEX */
 
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
+	/* USER CODE BEGIN RTOS_SEMAPHORES */
 	/* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
+	/* USER CODE END RTOS_SEMAPHORES */
 
-  /* USER CODE BEGIN RTOS_TIMERS */
+	/* USER CODE BEGIN RTOS_TIMERS */
 	/* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
+	/* USER CODE END RTOS_TIMERS */
 
-  /* Create the queue(s) */
-  /* definition and creation of CAN_SEND_QUEUE */
-  osMessageQDef(CAN_SEND_QUEUE, 40, CAN_OBJECT*);
-  CAN_SEND_QUEUEHandle = osMessageCreate(osMessageQ(CAN_SEND_QUEUE), NULL);
+	/* Create the queue(s) */
+	/* definition and creation of CAN_SEND_QUEUE */
+	osMessageQDef(CAN_SEND_QUEUE, 40, CAN_OBJECT*);
+	CAN_SEND_QUEUEHandle = osMessageCreate(osMessageQ(CAN_SEND_QUEUE), NULL);
 
-  /* definition and creation of CAN_RECEIVE_QUEUE */
-  osMessageQDef(CAN_RECEIVE_QUEUE, 40, RECEIVED_CAN_OBJECT);
-  CAN_RECEIVE_QUEUEHandle = osMessageCreate(osMessageQ(CAN_RECEIVE_QUEUE), NULL);
+	/* definition and creation of CAN_RECEIVE_QUEUE */
+	osMessageQDef(CAN_RECEIVE_QUEUE, 40, RECEIVED_CAN_OBJECT);
+	CAN_RECEIVE_QUEUEHandle = osMessageCreate(osMessageQ(CAN_RECEIVE_QUEUE), NULL);
 
-  /* USER CODE BEGIN RTOS_QUEUES */
+	/* USER CODE BEGIN RTOS_QUEUES */
 	/* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
+	/* USER CODE END RTOS_QUEUES */
 
-  /* Create the thread(s) */
-  /* definition and creation of canSendTask */
-  osThreadDef(canSendTask, StartCanSendTask, osPriorityHigh, 0, 128);
-  canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
+	/* Create the thread(s) */
+	/* definition and creation of canSendTask */
+	osThreadDef(canSendTask, StartCanSendTask, osPriorityHigh, 0, 128);
+	canSendTaskHandle = osThreadCreate(osThread(canSendTask), NULL);
 
-  /* definition and creation of adcTask */
-  osThreadDef(adcTask, StartAdcTask, osPriorityAboveNormal, 0, 128);
-  adcTaskHandle = osThreadCreate(osThread(adcTask), NULL);
+	/* definition and creation of adcTask */
+	osThreadDef(adcTask, StartAdcTask, osPriorityAboveNormal, 0, 128);
+	adcTaskHandle = osThreadCreate(osThread(adcTask), NULL);
 
-  /* definition and creation of canReceiveTask */
-  osThreadDef(canReceiveTask, StartCanReceiveTask, osPriorityNormal, 0, 128);
-  canReceiveTaskHandle = osThreadCreate(osThread(canReceiveTask), NULL);
+	/* definition and creation of canReceiveTask */
+	osThreadDef(canReceiveTask, StartCanReceiveTask, osPriorityNormal, 0, 128);
+	canReceiveTaskHandle = osThreadCreate(osThread(canReceiveTask), NULL);
 
-  /* definition and creation of initTask */
-  osThreadDef(initTask, StartInitTask, osPriorityHigh, 0, 128);
-  initTaskHandle = osThreadCreate(osThread(initTask), NULL);
+	/* definition and creation of initTask */
+	osThreadDef(initTask, StartInitTask, osPriorityHigh, 0, 128);
+	initTaskHandle = osThreadCreate(osThread(initTask), NULL);
 
-  /* definition and creation of heartbeatTask */
-  osThreadDef(heartbeatTask, StartHeartbeatTask, osPriorityLow, 0, 128);
-  heartbeatTaskHandle = osThreadCreate(osThread(heartbeatTask), NULL);
+	/* definition and creation of heartbeatTask */
+	osThreadDef(heartbeatTask, StartHeartbeatTask, osPriorityLow, 0, 128);
+	heartbeatTaskHandle = osThreadCreate(osThread(heartbeatTask), NULL);
 
-  /* definition and creation of tamperTask */
-  osThreadDef(tamperTask, StartTamperTask, osPriorityNormal, 0, 128);
-  tamperTaskHandle = osThreadCreate(osThread(tamperTask), NULL);
+	/* definition and creation of tamperTask */
+	osThreadDef(tamperTask, StartTamperTask, osPriorityNormal, 0, 128);
+	tamperTaskHandle = osThreadCreate(osThread(tamperTask), NULL);
 
-  /* USER CODE BEGIN RTOS_THREADS */
+	/* USER CODE BEGIN RTOS_THREADS */
 	/* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
+	/* USER CODE END RTOS_THREADS */
 
 }
 
@@ -180,13 +179,12 @@ void MX_FREERTOS_Init(void) {
  * @retval None
  */
 /* USER CODE END Header_StartCanSendTask */
-void StartCanSendTask(void const * argument)
-{
-  /* USER CODE BEGIN StartCanSendTask */
+void StartCanSendTask(void const *argument) {
+	/* USER CODE BEGIN StartCanSendTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	//infinite loop inside
 	sendCANMessageFromQueue();
-  /* USER CODE END StartCanSendTask */
+	/* USER CODE END StartCanSendTask */
 }
 
 /* USER CODE BEGIN Header_StartAdcTask */
@@ -196,16 +194,15 @@ void StartCanSendTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartAdcTask */
-void StartAdcTask(void const * argument)
-{
-  /* USER CODE BEGIN StartAdcTask */
+void StartAdcTask(void const *argument) {
+	/* USER CODE BEGIN StartAdcTask */
 	/* Infinite loop */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	initAndStartAdc();
 
 	//infinite loop inside
 	processAdc();
-  /* USER CODE END StartAdcTask */
+	/* USER CODE END StartAdcTask */
 }
 
 /* USER CODE BEGIN Header_StartCanReceiveTask */
@@ -215,13 +212,12 @@ void StartAdcTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartCanReceiveTask */
-void StartCanReceiveTask(void const * argument)
-{
-  /* USER CODE BEGIN StartCanReceiveTask */
+void StartCanReceiveTask(void const *argument) {
+	/* USER CODE BEGIN StartCanReceiveTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	//infinite loop inside
 	receiveCANMessageFromQueue();
-  /* USER CODE END StartCanReceiveTask */
+	/* USER CODE END StartCanReceiveTask */
 }
 
 /* USER CODE BEGIN Header_StartInitTask */
@@ -231,9 +227,8 @@ void StartCanReceiveTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartInitTask */
-void StartInitTask(void const * argument)
-{
-  /* USER CODE BEGIN StartInitTask */
+void StartInitTask(void const *argument) {
+	/* USER CODE BEGIN StartInitTask */
 	portDISABLE_INTERRUPTS();
 
 	checkAndDoFactoryResetIfNeeded();
@@ -267,7 +262,7 @@ void StartInitTask(void const * argument)
 
 	vTaskDelete(NULL);
 
-  /* USER CODE END StartInitTask */
+	/* USER CODE END StartInitTask */
 }
 
 /* USER CODE BEGIN Header_StartHeartbeatTask */
@@ -277,22 +272,25 @@ void StartInitTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartHeartbeatTask */
-void StartHeartbeatTask(void const * argument)
-{
-  /* USER CODE BEGIN StartHeartbeatTask */
+void StartHeartbeatTask(void const *argument) {
+	/* USER CODE BEGIN StartHeartbeatTask */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
-	if (homeConfig.heartbeat != 0) {
-		uint8_t heartbeat = { 0 };
-		for (;;) {
+
+	uint8_t heartbeat = { 0 };
+	uint8_t i = 0;
+	for (;;) {
+		osDelay(1000);
+		if (homeConfig.heartbeat != 0) {
 			HAL_GPIO_TogglePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin);
-
-			putCanMessageToQueue(ALARM_CONTROLLER_HEARTBEAT, &heartbeat, 1, CAN_RTR_DATA);
-			osDelay(30000);
 		}
-	}
+		if (i == 29) {
+			putCanMessageToQueue(ALARM_CONTROLLER_HEARTBEAT, &heartbeat, 1, CAN_RTR_DATA);
+			i = 0;
+		}
 
-	vTaskDelete(NULL);
-  /* USER CODE END StartHeartbeatTask */
+		i++;
+	}
+	/* USER CODE END StartHeartbeatTask */
 }
 
 /* USER CODE BEGIN Header_StartTamperTask */
@@ -302,14 +300,13 @@ void StartHeartbeatTask(void const * argument)
  * @retval None
  */
 /* USER CODE END Header_StartTamperTask */
-void StartTamperTask(void const * argument)
-{
-  /* USER CODE BEGIN StartTamperTask */
+void StartTamperTask(void const *argument) {
+	/* USER CODE BEGIN StartTamperTask */
 	/* Infinite loop */
 	xTaskNotifyWait(0x00, 0x00, NULL, portMAX_DELAY);
 	initTamper();
 	processTamperEvents();
-  /* USER CODE END StartTamperTask */
+	/* USER CODE END StartTamperTask */
 }
 
 /* Private application code --------------------------------------------------*/
