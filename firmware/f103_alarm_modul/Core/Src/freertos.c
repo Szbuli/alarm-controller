@@ -80,8 +80,8 @@ void StartTamperTask(void const *argument);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* GetIdleTaskMemory prototype (linked to static allocation support) */
-void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
-		uint32_t *pulIdleTaskStackSize);
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+		StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize);
 
 /* USER CODE BEGIN PREPOSTSLEEP */
 __weak void PreSleepProcessing(uint32_t *ulExpectedIdleTime) {
@@ -97,8 +97,8 @@ __weak void PostSleepProcessing(uint32_t *ulExpectedIdleTime) {
 static StaticTask_t xIdleTaskTCBBuffer;
 static StackType_t xIdleStack[configMINIMAL_STACK_SIZE];
 
-void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer, StackType_t **ppxIdleTaskStackBuffer,
-		uint32_t *pulIdleTaskStackSize) {
+void vApplicationGetIdleTaskMemory(StaticTask_t **ppxIdleTaskTCBBuffer,
+		StackType_t **ppxIdleTaskStackBuffer, uint32_t *pulIdleTaskStackSize) {
 	*ppxIdleTaskTCBBuffer = &xIdleTaskTCBBuffer;
 	*ppxIdleTaskStackBuffer = &xIdleStack[0];
 	*pulIdleTaskStackSize = configMINIMAL_STACK_SIZE;
@@ -135,7 +135,8 @@ void MX_FREERTOS_Init(void) {
 
 	/* definition and creation of CAN_RECEIVE_QUEUE */
 	osMessageQDef(CAN_RECEIVE_QUEUE, 40, RECEIVED_CAN_OBJECT);
-	CAN_RECEIVE_QUEUEHandle = osMessageCreate(osMessageQ(CAN_RECEIVE_QUEUE), NULL);
+	CAN_RECEIVE_QUEUEHandle = osMessageCreate(osMessageQ(CAN_RECEIVE_QUEUE),
+			NULL);
 
 	/* USER CODE BEGIN RTOS_QUEUES */
 	/* add queues, ... */
@@ -284,7 +285,8 @@ void StartHeartbeatTask(void const *argument) {
 			HAL_GPIO_TogglePin(BUSY_LED_GPIO_Port, BUSY_LED_Pin);
 		}
 		if (i == 29) {
-			putCanMessageToQueue(ALARM_CONTROLLER_HEARTBEAT, &heartbeat, 1, CAN_RTR_DATA);
+			putCanMessageToQueue(ALARM_CONTROLLER_HEARTBEAT, &heartbeat, 1,
+					CAN_RTR_DATA);
 			i = 0;
 		}
 
@@ -314,4 +316,3 @@ void StartTamperTask(void const *argument) {
 
 /* USER CODE END Application */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
