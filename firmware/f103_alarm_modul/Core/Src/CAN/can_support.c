@@ -12,8 +12,8 @@
 #include "home_config.h"
 #include "eeprom.h"
 
-osMessageQId canQueueHandle;
-osMessageQId CAN_RECEIVE_QUEUEHandle;
+osMessageQId canSendQueueHandle;
+osMessageQId canReceiveQueueHandle;
 
 CAN_TxHeaderTypeDef TxHeader;
 CAN_RxHeaderTypeDef RxHeader;
@@ -21,17 +21,17 @@ uint8_t TxData[8];
 uint8_t RxData[8];
 uint32_t TxMailbox;
 
-HAL_StatusTypeDef initCan(osMessageQId canQueueHandleArgument, osMessageQId CAN_RECEIVE_QUEUEHandleArgument) {
+HAL_StatusTypeDef initCan(osMessageQId canSendQueueHandleArgument, osMessageQId canReceiveQueueHandleArgument) {
 
-	canQueueHandle = canQueueHandleArgument;
-	CAN_RECEIVE_QUEUEHandle = CAN_RECEIVE_QUEUEHandleArgument;
+	canSendQueueHandle = canSendQueueHandleArgument;
+	canReceiveQueueHandle = canReceiveQueueHandleArgument;
 
-	if (CAN_RECEIVE_QUEUEHandle == NULL) {
+	if (canReceiveQueueHandle == NULL) {
 		home_error(CAN_RX_QUEUE_CANNOT_BE_CREATED);
 		/* Queue was not created and must not be used. */
 		return HAL_ERROR;
 	}
-	if (canQueueHandle == NULL) {
+	if (canSendQueueHandle == NULL) {
 		home_error(CAN_TX_QUEUE_CANNOT_BE_CREATED);
 		/* Queue was not created and must not be used. */
 		return HAL_ERROR;
@@ -106,7 +106,7 @@ CAN_OBJECT* wrapCanMessage(uint16_t topicId, uint8_t *dataArray, uint8_t dataLen
 
 void putCanMessageToQueue(uint32_t stdId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
 	CAN_OBJECT *canMessage = wrapCanMessage(stdId, dataArray, dataLength, RTR);
-	xQueueSend(canQueueHandle, &canMessage, (TickType_t ) 0);
+	xQueueSend(canSendQueueHandle, &canMessage, (TickType_t ) 0);
 }
 
 void putCanMessageToQueueFromInterrupt(uint32_t stdId, uint8_t *dataArray, uint8_t dataLength, uint8_t RTR) {
@@ -115,7 +115,7 @@ void putCanMessageToQueueFromInterrupt(uint32_t stdId, uint8_t *dataArray, uint8
 	BaseType_t xHigherPriorityTaskWoken;
 	xHigherPriorityTaskWoken = pdFALSE;
 
-	if (xQueueSendFromISR(canQueueHandle, &canMessage, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
+	if (xQueueSendFromISR(canSendQueueHandle, &canMessage, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
 		home_error(CAN_TX_QUEUE_FULL);
 	}
 
@@ -126,12 +126,12 @@ void putCanMessageToQueueFromInterrupt(uint32_t stdId, uint8_t *dataArray, uint8
 }
 
 void sendCANMessageFromQueue() {
-	if (canQueueHandle == NULL) {
+	if (canSendQueueHandle == NULL) {
 		vTaskDelete(NULL);
 	} else {
 		CAN_OBJECT *canObjectPointer;
 		for (;;) {
-			if (xQueueReceive(canQueueHandle, &canObjectPointer, portMAX_DELAY)) {
+			if (xQueueReceive(canSendQueueHandle, &canObjectPointer, portMAX_DELAY)) {
 
 				TxHeader.ExtId = ((canObjectPointer->topicId << 16) | homeConfig.deviceId);
 
@@ -160,12 +160,12 @@ void sendCANMessageFromQueue() {
 }
 
 void receiveCANMessageFromQueue() {
-	if (CAN_RECEIVE_QUEUEHandle == NULL) {
+	if (canReceiveQueueHandle == NULL) {
 		vTaskDelete(NULL);
 	} else {
 		RECEIVED_CAN_OBJECT receivedObject;
 		for (;;) {
-			if (xQueueReceive(CAN_RECEIVE_QUEUEHandle, &receivedObject, portMAX_DELAY)) {
+			if (xQueueReceive(canReceiveQueueHandle, &receivedObject, portMAX_DELAY)) {
 				uint16_t typeId = receivedObject.id >> 16;
 				//uint16_t homeId = receivedObject.id & 0xFFFF;
 
@@ -232,7 +232,7 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) {
 	BaseType_t xHigherPriorityTaskWoken;
 	xHigherPriorityTaskWoken = pdFALSE;
 
-	if (xQueueSendFromISR(CAN_RECEIVE_QUEUEHandle, &receivedObject, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
+	if (xQueueSendFromISR(canReceiveQueueHandle, &receivedObject, &xHigherPriorityTaskWoken) == errQUEUE_FULL) {
 		home_error(CAN_RX_QUEUE_FULL);
 	}
 
