@@ -16,6 +16,12 @@ extern __IO uint16_t rawAdcData[16];
 #define ALARM_SHORTED 1		// 12V
 #define ALARM_ERROR 0		// other
 
+#define VOLTAGE_8V 4 		// 8V
+#define VOLTAGE_0V 3		// 0V
+#define VOLTAGE_4V 2	// 4,5V
+#define VOLTAGE_12V 1		// 12V
+#define VOLTAGE_INVALID	0	// other
+
 #define LIGHT_OFF 1
 #define LIGHT_ON 2
 
