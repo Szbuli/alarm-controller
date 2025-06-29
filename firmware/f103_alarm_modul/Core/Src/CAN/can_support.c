@@ -182,22 +182,27 @@ void receiveCANMessageFromQueue() {
 					factoryReset();
 					osDelay(100);
 					HAL_NVIC_SystemReset();
-				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13
-						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14
+				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_1 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_2
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_3 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_4
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_5 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_6
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_7 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_8
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_9 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_10
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_11 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_12
+						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_13 || typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_14
 						|| typeId == ALARM_CONTROLLER_CONFIGURE_SENSOR_15) {
 					configureSensor(typeId, receivedObject.data0);
+				} else if (typeId == ALARM_CONTROLLER_COUNTER_SET_1 || typeId == ALARM_CONTROLLER_COUNTER_SET_2
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_3 || typeId == ALARM_CONTROLLER_COUNTER_SET_4
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_5 || typeId == ALARM_CONTROLLER_COUNTER_SET_6
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_7 || typeId == ALARM_CONTROLLER_COUNTER_SET_8
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_9 || typeId == ALARM_CONTROLLER_COUNTER_SET_10
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_11 || typeId == ALARM_CONTROLLER_COUNTER_SET_12
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_13 || typeId == ALARM_CONTROLLER_COUNTER_SET_14
+						|| typeId == ALARM_CONTROLLER_COUNTER_SET_15) {
+					uint64_t counterValue = ((uint64_t) receivedObject.data0 << 56) | ((uint64_t) receivedObject.data1 << 48)
+							| ((uint64_t) receivedObject.data2 << 40) | ((uint64_t) receivedObject.data3 << 32) | ((uint64_t) receivedObject.data4 << 24)
+							| ((uint64_t) receivedObject.data5 << 16) | ((uint64_t) receivedObject.data6 << 8) | ((uint64_t) receivedObject.data7);
+					configureCounterCurrentValue(typeId, counterValue);
 				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_TAMPER) {
 					configureTamper(receivedObject.data0);
 				} else if (typeId == ALARM_CONTROLLER_CONFIGURE_HEARTBEAT) {

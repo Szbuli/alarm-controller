@@ -257,6 +257,7 @@ void StartInitTask(void const *argument) {
 	portENABLE_INTERRUPTS();
 
 	publishConfigForAutoDiscovery();
+	publishSensorConfigs();
 
 	vTaskDelete(NULL);
 

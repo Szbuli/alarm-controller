@@ -16,7 +16,9 @@
 
 void pingEEPROM();
 uint8_t readByteEEPROM(uint16_t address);
+uint64_t read8ByteEEPROM(uint16_t address);
 HAL_StatusTypeDef writeByteEEPROM(uint16_t address, uint8_t data);
+HAL_StatusTypeDef write8ByteEEPROM(uint16_t address, uint64_t data);
 void writeProtectedByteEEPROM(uint16_t address, uint8_t data);
 
 #endif /* EEPROM_EEPROM_H_ */
