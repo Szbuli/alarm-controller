@@ -95,6 +95,65 @@ void configureSensor(uint16_t typeId, uint8_t state) {
 	HAL_NVIC_SystemReset();
 }
 
+void configureCounterCurrentValue(uint16_t typeId, uint64_t counterValue) {
+	if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_1) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_1, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_2) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_2, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_3) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_3, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_4) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_4, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_5) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_5, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_6) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_6, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_7) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_7, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_8) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_8, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_9) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_9, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_10) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_10, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_11) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_11, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_12) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_12, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_13) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_13, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_14) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_14, counterValue);
+	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_15) {
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_15, counterValue);
+	}
+}
+
+void publishSensorConfig(uint16_t topicId, uint8_t type) {
+	uint8_t config[] = { type };
+	putCanMessageToQueue(topicId, config, 1, CAN_RTR_DATA);
+}
+
+void publishSensorConfigs() {
+	if (homeConfig.listenForDeviceIdMode == 0) {
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_1, homeConfig.alarm_1);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_2, homeConfig.alarm_2);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_3, homeConfig.alarm_3);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_4, homeConfig.alarm_4);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_5, homeConfig.alarm_5);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_6, homeConfig.alarm_6);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_7, homeConfig.alarm_7);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_8, homeConfig.alarm_8);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_9, homeConfig.alarm_9);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_10, homeConfig.alarm_10);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_11, homeConfig.alarm_11);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_12, homeConfig.alarm_12);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_13, homeConfig.alarm_13);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_14, homeConfig.alarm_14);
+		publishSensorConfig(ALARM_CONTROLLER_CONFIGURE_SENSOR_15, homeConfig.alarm_15);
+	}
+}
+
 void readConfigOnStartup() {
 	homeConfig.deviceId = readByteEEPROM(ADDRESS_DEVICE_ID_PART_0) | readByteEEPROM(ADDRESS_DEVICE_ID_PART_1) << 8;
 	homeConfig.tamper = readByteEEPROM(ADDRESS_TAMPER);

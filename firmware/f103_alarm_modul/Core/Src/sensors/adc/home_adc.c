@@ -10,6 +10,7 @@
 #include "home_adc.h"
 #include "can_support.h"
 #include "home_config.h"
+#include "eeprom.h"
 
 __IO uint16_t rawAdcData[16];
 
@@ -49,7 +50,7 @@ uint8_t getSensorState(uint8_t id) {
 
 	//TODO change if else order
 	//TODO about floating point operations
-	if (rawAdcData[id] <= reference && rawAdcData[id] > 0.83 * reference) {
+	if (rawAdcData[id] <= reference * 1.1 && rawAdcData[id] > 0.83 * reference) {
 		return VOLTAGE_12V;
 	} else if (rawAdcData[id] <= 0.83 * reference && rawAdcData[id] > 0.5175 * reference) {
 		return VOLTAGE_8V;
@@ -130,6 +131,74 @@ uint32_t getCounterSensorTopic(uint8_t id) {
 	}
 }
 
+uint32_t getCounterSetTopic(uint8_t id) {
+	if (id == 1) {
+		return ALARM_CONTROLLER_COUNTER_SET_1;
+	} else if (id == 2) {
+		return ALARM_CONTROLLER_COUNTER_SET_2;
+	} else if (id == 3) {
+		return ALARM_CONTROLLER_COUNTER_SET_3;
+	} else if (id == 4) {
+		return ALARM_CONTROLLER_COUNTER_SET_4;
+	} else if (id == 5) {
+		return ALARM_CONTROLLER_COUNTER_SET_5;
+	} else if (id == 6) {
+		return ALARM_CONTROLLER_COUNTER_SET_6;
+	} else if (id == 7) {
+		return ALARM_CONTROLLER_COUNTER_SET_7;
+	} else if (id == 8) {
+		return ALARM_CONTROLLER_COUNTER_SET_8;
+	} else if (id == 9) {
+		return ALARM_CONTROLLER_COUNTER_SET_9;
+	} else if (id == 10) {
+		return ALARM_CONTROLLER_COUNTER_SET_10;
+	} else if (id == 11) {
+		return ALARM_CONTROLLER_COUNTER_SET_11;
+	} else if (id == 12) {
+		return ALARM_CONTROLLER_COUNTER_SET_12;
+	} else if (id == 13) {
+		return ALARM_CONTROLLER_COUNTER_SET_13;
+	} else if (id == 14) {
+		return ALARM_CONTROLLER_COUNTER_SET_14;
+	} else {
+		return ALARM_CONTROLLER_COUNTER_SET_15;
+	}
+}
+
+uint16_t getCounterMemoryAddress(uint8_t id) {
+	if (id == 1) {
+		return ADDRESS_COUNTER_1;
+	} else if (id == 2) {
+		return ADDRESS_COUNTER_2;
+	} else if (id == 3) {
+		return ADDRESS_COUNTER_3;
+	} else if (id == 4) {
+		return ADDRESS_COUNTER_4;
+	} else if (id == 5) {
+		return ADDRESS_COUNTER_5;
+	} else if (id == 6) {
+		return ADDRESS_COUNTER_6;
+	} else if (id == 7) {
+		return ADDRESS_COUNTER_7;
+	} else if (id == 8) {
+		return ADDRESS_COUNTER_8;
+	} else if (id == 9) {
+		return ADDRESS_COUNTER_9;
+	} else if (id == 10) {
+		return ADDRESS_COUNTER_10;
+	} else if (id == 11) {
+		return ADDRESS_COUNTER_11;
+	} else if (id == 12) {
+		return ADDRESS_COUNTER_12;
+	} else if (id == 13) {
+		return ADDRESS_COUNTER_13;
+	} else if (id == 14) {
+		return ADDRESS_COUNTER_14;
+	} else {
+		return ADDRESS_COUNTER_15;
+	}
+}
+
 void processAlarmSensor(uint8_t id) {
 	uint32_t topicId = getAlarmSensorTopic(id);
 
@@ -146,6 +215,7 @@ void processAlarmSensor(uint8_t id) {
 
 void processCounter(uint8_t sensorType, uint8_t id) {
 	uint32_t topicId = getCounterSensorTopic(id);
+	uint32_t setTopicId = getCounterSetTopic(id);
 
 	uint8_t currentState = sensorState[id - 1];
 	uint8_t previousState = previousSensorState[id - 1];
@@ -160,8 +230,17 @@ void processCounter(uint8_t sensorType, uint8_t id) {
 	//send count every 60 sec
 	if (sensorPublishFrequencyCounter[id - 1] >= ONE_MINUTE_FREQ_COUNT) {
 		sensorPublishFrequencyCounter[id - 1] = 0;
-		uint8_t temps[] = { sensorCounter[id - 1] >> 8, sensorCounter[id - 1] };
-		putCanMessageToQueue(topicId, temps, 2, CAN_RTR_DATA);
+		uint16_t counter = sensorCounter[id - 1];
+
+		uint16_t counterMemoryAddress = getCounterMemoryAddress(id);
+		uint64_t currentCounter = read8ByteEEPROM(counterMemoryAddress);
+		uint64_t newCounterValue = currentCounter + counter;
+		write8ByteEEPROM(counterMemoryAddress, newCounterValue);
+
+		uint8_t temps[] = { (newCounterValue >> 56) & 0xFF, (newCounterValue >> 48) & 0xFF, (newCounterValue >> 40) & 0xFF, (newCounterValue >> 32) & 0xFF,
+				(newCounterValue >> 24) & 0xFF, (newCounterValue >> 16) & 0xFF, (newCounterValue >> 8) & 0xFF, newCounterValue & 0xFF };
+		putCanMessageToQueue(topicId, temps, 8, CAN_RTR_DATA);
+		putCanMessageToQueue(setTopicId, temps, 8, CAN_RTR_DATA);
 		sensorCounter[id - 1] = 0;
 	}
 }

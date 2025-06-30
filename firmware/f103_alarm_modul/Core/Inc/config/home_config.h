@@ -30,6 +30,22 @@
 #define ADDRESS_TAMPER 30
 #define ADDRESS_HEARTBEAT 31
 
+#define ADDRESS_COUNTER_1 40
+#define ADDRESS_COUNTER_2 48
+#define ADDRESS_COUNTER_3 56
+#define ADDRESS_COUNTER_4 64
+#define ADDRESS_COUNTER_5 72
+#define ADDRESS_COUNTER_6 80
+#define ADDRESS_COUNTER_7 88
+#define ADDRESS_COUNTER_8 96
+#define ADDRESS_COUNTER_9 104
+#define ADDRESS_COUNTER_10 112
+#define ADDRESS_COUNTER_11 120
+#define ADDRESS_COUNTER_12 128
+#define ADDRESS_COUNTER_13 136
+#define ADDRESS_COUNTER_14 144
+#define ADDRESS_COUNTER_15 152
+
 #define STM32_UUID_32 ((uint32_t *)0x1FFF7A10)
 #define STM32_UUID_16 ((uint16_t *)0x1FFF7A10)
 
@@ -70,5 +86,7 @@ void factoryReset();
 void configureSensor(uint16_t canId, uint8_t state);
 void configureTamper(uint8_t state);
 void configureHeartbeat(uint8_t state);
+void publishSensorConfigs();
+void configureCounterCurrentValue(uint16_t typeId, uint64_t counterValue);
 
 #endif /* CONFIG_HOME_CONFIG_H_ */

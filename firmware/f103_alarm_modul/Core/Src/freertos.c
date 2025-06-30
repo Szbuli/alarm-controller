@@ -128,11 +128,11 @@ void MX_FREERTOS_Init(void) {
 
 	/* Create the queue(s) */
 	/* definition and creation of CAN_SEND_QUEUE */
-	osMessageQDef(CAN_SEND_QUEUE, 40, CAN_OBJECT*);
+	osMessageQDef(CAN_SEND_QUEUE, 150, CAN_OBJECT*);
 	CAN_SEND_QUEUEHandle = osMessageCreate(osMessageQ(CAN_SEND_QUEUE), NULL);
 
 	/* definition and creation of CAN_RECEIVE_QUEUE */
-	osMessageQDef(CAN_RECEIVE_QUEUE, 40, RECEIVED_CAN_OBJECT);
+	osMessageQDef(CAN_RECEIVE_QUEUE, 100, RECEIVED_CAN_OBJECT);
 	CAN_RECEIVE_QUEUEHandle = osMessageCreate(osMessageQ(CAN_RECEIVE_QUEUE), NULL);
 
 	/* USER CODE BEGIN RTOS_QUEUES */
@@ -257,6 +257,7 @@ void StartInitTask(void const *argument) {
 	portENABLE_INTERRUPTS();
 
 	publishConfigForAutoDiscovery();
+	publishSensorConfigs();
 
 	vTaskDelete(NULL);
 
