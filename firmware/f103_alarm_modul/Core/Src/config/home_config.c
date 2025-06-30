@@ -97,35 +97,35 @@ void configureSensor(uint16_t typeId, uint8_t state) {
 
 void configureCounterCurrentValue(uint16_t typeId, uint64_t counterValue) {
 	if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_1) {
-		write8ByteEEPROM(ADDRESS_COUNTER_1, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_1, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_2) {
-		write8ByteEEPROM(ADDRESS_COUNTER_2, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_2, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_3) {
-		write8ByteEEPROM(ADDRESS_COUNTER_3, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_3, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_4) {
-		write8ByteEEPROM(ADDRESS_COUNTER_4, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_4, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_5) {
-		write8ByteEEPROM(ADDRESS_COUNTER_5, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_5, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_6) {
-		write8ByteEEPROM(ADDRESS_COUNTER_6, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_6, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_7) {
-		write8ByteEEPROM(ADDRESS_COUNTER_7, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_7, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_8) {
-		write8ByteEEPROM(ADDRESS_COUNTER_8, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_8, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_9) {
-		write8ByteEEPROM(ADDRESS_COUNTER_9, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_9, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_10) {
-		write8ByteEEPROM(ADDRESS_COUNTER_10, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_10, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_11) {
-		write8ByteEEPROM(ADDRESS_COUNTER_11, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_11, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_12) {
-		write8ByteEEPROM(ADDRESS_COUNTER_12, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_12, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_13) {
-		write8ByteEEPROM(ADDRESS_COUNTER_13, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_13, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_14) {
-		write8ByteEEPROM(ADDRESS_COUNTER_14, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_14, counterValue);
 	} else if (typeId == ALARM_CONTROLLER_COUNTER_SENSOR_STATE_15) {
-		write8ByteEEPROM(ADDRESS_COUNTER_15, counterValue);
+		write8ByteEEPROM(ALARM_CONTROLLER_COUNTER_SET_15, counterValue);
 	}
 }
 
