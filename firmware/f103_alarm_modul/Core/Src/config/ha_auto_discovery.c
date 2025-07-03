@@ -26,6 +26,7 @@ void publishSensor(uint8_t type, uint8_t dataTemplate[], uint8_t resetDataTempla
 	if (type == 1) {
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_ALARM_SENSOR_CONFIG, alarmStateTopicId, dataTemplate);
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_COUNTER_SENSOR_CONFIG, counterStateTopicId, resetDataTemplate);
+		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_CONFIGURE_COUNTER_VALUE_CONFIG, counterSetTopicId, resetDataTemplate);
 	} else if (type == 3 || type == 4) {
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_ALARM_SENSOR_CONFIG, alarmStateTopicId, resetDataTemplate);
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_COUNTER_SENSOR_CONFIG, counterStateTopicId, dataTemplate);
@@ -33,6 +34,7 @@ void publishSensor(uint8_t type, uint8_t dataTemplate[], uint8_t resetDataTempla
 	} else {
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_ALARM_SENSOR_CONFIG, alarmStateTopicId, resetDataTemplate);
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_COUNTER_SENSOR_CONFIG, counterStateTopicId, resetDataTemplate);
+		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_CONFIGURE_COUNTER_VALUE_CONFIG, counterSetTopicId, resetDataTemplate);
 	}
 }
 
