@@ -36,6 +36,7 @@ void publishSensor(uint8_t type, uint8_t dataTemplate[], uint8_t resetDataTempla
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_COUNTER_SENSOR_CONFIG, counterStateTopicId, resetDataTemplate);
 		sendAutoDiscoveryMessage(ALARM_CONTROLLER_HA_CONFIGURE_COUNTER_VALUE_CONFIG, counterSetTopicId, resetDataTemplate);
 	}
+	osDelay(10);
 }
 
 void publishConfigForAutoDiscovery() {
